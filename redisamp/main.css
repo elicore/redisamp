@@ -1,0 +1,107 @@
+.ReJSON-RL {
+  background: #b8c5db;
+}
+
+.hash {
+  background: #cdddf8;
+}
+
+.string{
+  background: #c7b0ea;
+}
+
+.list {
+  background: #a5d4c3;
+}
+
+.set {
+  background: #d4baa7;
+}
+
+.zset {
+  background: #d9a0c6;
+}
+
+.stream {
+  background: #c7cea8;
+}
+
+.graphdata {
+  background: #acccd7;
+}
+
+.TSDB-TYPE {
+  background: #c7c7c7;
+}
+
+.MBbloom-- {
+  background: #3f4b5f;
+}
+
+#keys-filter {
+  border: round;
+}
+
+#keys-filter :focus {
+  background: $success-darken-3;
+  border: round $success-lighten-1;
+  border-title-align: left;
+}
+
+#keys-list {
+  border-top: solid $accent-lighten-3;
+  border-title-align: right;
+  width: 35%;
+}
+
+#key-view {
+  height: 100%;
+  /* border: round $accent-lighten-3; */
+}
+
+KeyItem .type {
+  color: auto;
+  padding: 0 1;
+}
+
+.type-container {
+  width: auto;
+  padding: 0 1;
+  align: center middle;
+}
+
+.ttl {
+  dock: right;
+}
+
+KeyItem .ttl {
+  width: auto;
+  padding: 0 1;
+  margin-left: 1;
+}
+
+#key-view Horizontal {
+  height: 1;
+  background: $panel-darken-1;
+  dock: bottom;
+}
+
+#key-view .key-size {
+  padding: 0 1;
+  background: $accent-darken-2;
+  color: auto;
+}
+
+#key-view .ttl {
+  padding: 0 1;
+  max-width: 18;
+  background: $accent-darken-2;
+  color: auto;
+}
+
+StreamKey #stream-no-messages {
+  align: center middle;
+  height: 100%;
+  width: 100%;
+  background: $panel-darken-1;
+}
