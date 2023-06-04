@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "Redisamp"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Redis UI in your terminal"
 authors = ["Eli Cohen <amihai.cohen@gmail.com>"]
 keywords = ["redis", "tui", "redis-client", "redisamp", "redis-ui", "textual"]
