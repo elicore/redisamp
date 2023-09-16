@@ -7,7 +7,7 @@ from redisamp.screens import HomeScreen, ConnectionScreen, SearchScreen
 
 class Redisamp(App):
     CSS_PATH = "main.tcss"
-    SCREENS = {
+    MODES = {
         "connections": ConnectionScreen(),
         "home": HomeScreen(),
         "search": SearchScreen(),
@@ -15,25 +15,24 @@ class Redisamp(App):
 
     BINDINGS = [
         ("q", "quit", "Quit"),
-        ("c", "push_screen('connections')", "Connections"),
-        ("s", "push_screen('search')", "Search"),
-        # ("slash", "focus('keys-filter')", "Filter"),
+        ("c", "switch_mode('connections')", "Connections"),
+        ("s", "switch_mode('search')", "Search"),
     ]
 
     def on_mount(self) -> None:
-        self.push_screen("home")
+        self.switch_mode("home")
 
 
 app = Redisamp()
 
 
-def run_app(uri: str = typer.Option("redis://localhost", help="Redis connection URI")):
-    db.init(uri)
+def run_app(url: str = typer.Option("redis://localhost", help="Redis connection URL", envvar="REDIS_URL")):
+    db.init(url)
     if db.online:
         app.run()
 
-def main():
-    typer.run(run_app)
+# def main():
+#     typer.run(run_app)
 
 if __name__ == "__main__":
-    main()
+    typer.run(run_app)

@@ -50,13 +50,13 @@
 
 #keys-list {
   border-top: solid $accent-lighten-3;
-  border-title-align: right;
-  width: 35%;
+  border-title-align: center;
+  width: 40%;
 }
 
 #key-view {
   height: 100%;
-  /* border: round $accent-lighten-3; */
+  border: round $accent-lighten-3;
 }
 
 KeyItem .type {
@@ -82,7 +82,7 @@ KeyItem .ttl {
 }
 
 #key-view Horizontal {
-  # height: 1;
+  height: 1;
   background: $panel-darken-1;
   dock: bottom;
 }

@@ -6,7 +6,7 @@ from textual.app import ComposeResult
 from textual.widgets import Label, Placeholder, Button
 
 class SearchScreen(ModalScreen):
-    BINDINGS = [("escape", "app.pop_screen", "Back")]
+    BINDINGS = [("escape", "app.switch_mode('home')", "Back")]
 
     # list redis search indexes
     def list_indexes(self) -> list[str]:
@@ -16,6 +16,4 @@ class SearchScreen(ModalScreen):
         with Horizontal():
             for index in self.list_indexes():
                 yield Label(index)
-        # yield Label("Search")
         yield Placeholder("TODO")
-        # yield Button("Search", self.search)

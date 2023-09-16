@@ -3,11 +3,11 @@ from textual.app import ComposeResult
 from textual import on
 from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
-from textual.widgets import Footer, Input, ListView, Header
+from textual.widgets import Footer, Input, Header, DataTable
 
 from redisamp.messages import KeysFilterChanged
-from redisamp.widgets.keys_list import KeysList
-from redisamp.widgets.key_view import KeyView
+from redisamp.widgets import KeysList, KeyView
+from redisamp.db import RedisKey
 
 KEYS_LIST_ID = "keys-list"
 KEY_VIEW_ID = "key-view"
@@ -27,7 +27,7 @@ class HomeScreen(Screen):
     @on(KeysFilterChanged)
     async def fetch_keys(self, message: KeysFilterChanged) -> None:
         keys_list: KeysList = self.query_one(KEYS_LIST_SELECTOR)
-        await keys_list.clear()
+        keys_list.clear()
         keys_list.update_keys(message.filter_expression)
 
     def compose(self) -> ComposeResult:
@@ -35,10 +35,10 @@ class HomeScreen(Screen):
         yield Header()
         with Vertical():
             keys_filter = Input(id=KEYS_FILTER_ID, placeholder="*")
-            keys_filter.border_title = "Keys Filter"
+            keys_filter.border_title = "Search Keys"
             yield keys_filter
             with Horizontal():
-                yield KeysList(id=KEYS_LIST_ID)
+                yield KeysList(id=KEYS_LIST_ID, show_header=False, cursor_type="row")
                 yield KeyView(id=KEY_VIEW_ID)
             yield Footer()        
 
@@ -51,19 +51,10 @@ class HomeScreen(Screen):
     def on_mount(self):
         self.query_one("#keys-list").focus()
 
-    @on(ListView.Highlighted, KEYS_LIST_SELECTOR)
-    def key_selected(self, highlighted: ListView.Highlighted):
-        if not highlighted.item:
-            return
-
-        keys_list: KeysList = highlighted.list_view
+    @on(DataTable.RowHighlighted, KEYS_LIST_SELECTOR)
+    def row_highlighted(self, highlighted: DataTable.RowHighlighted):
+        key: RedisKey = highlighted.control.keys[highlighted.cursor_row]
 
         key_view: KeyView = self.query_one(KeyView)
-        if keys_list.index is not None and keys_list.keys:
-            key = keys_list.keys[keys_list.index]
-
-            key_view.key_type = key.type
-            key_view.key = key.name
-        else:
-            key_view.key_type = None
-            key_view.key = None
+        key_view.key_type = key.type
+        key_view.key = key.name
