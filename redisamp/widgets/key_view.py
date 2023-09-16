@@ -4,9 +4,10 @@ from textual.css.query import NoMatches
 from textual.reactive import reactive
 from textual.widgets import Label
 
-from redisamp import redis
+from redisamp.db import db
 from redisamp.widgets.keys import (BaseKey, render_key)
 
+redis = db.redis
 
 class KeyView(Vertical):
     key: reactive[str] = reactive("")
@@ -34,6 +35,11 @@ class KeyView(Vertical):
             self.query_one(BaseKey).remove()
         except NoMatches:
             pass
+
+        # if the key is empty, render something else
+        if not key:
+            self.mount(BaseKey(None))
+            return
 
         # get the display values
         key_view = render_key(self.key_type, key)

@@ -1,6 +1,4 @@
-import asyncio 
-
-from redisamp import redis_sync as redis
+from redisamp.db import db
 from redisamp.widgets.keys import BaseKey
 
 
@@ -33,6 +31,7 @@ class JsonKey(BaseKey):
                 selected.collapse()
 
     def compose(self) -> ComposeResult:
+        redis = db.sync
         json_obj = redis.json().get(self.key)
 
         self.tree = Tree("")

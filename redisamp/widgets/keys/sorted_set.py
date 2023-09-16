@@ -1,4 +1,4 @@
-from redisamp import redis_sync as redis
+from redisamp.db import db
 from redisamp.widgets.keys import BaseKey
 
 
@@ -10,6 +10,7 @@ from textual.widgets import Static
 
 class SortedSetKey(BaseKey):
     def compose(self) -> ComposeResult:
+        redis = db.sync
         # get first 100 values by score
         z = redis.zrange(self.key, 0, 100, withscores=True)
 

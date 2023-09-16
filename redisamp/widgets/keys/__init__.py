@@ -1,4 +1,3 @@
-from typing import Type
 from .base import BaseKey
 from .hash import HashKey
 from .json import JsonKey

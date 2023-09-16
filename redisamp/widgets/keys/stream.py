@@ -1,4 +1,4 @@
-from redisamp import redis_sync as redis
+from redisamp.db import db
 from redisamp.widgets.keys import BaseKey
 
 from rich.text import Text
@@ -27,6 +27,7 @@ class StreamKey(BaseKey):
         return f"{str_date_time}-{sequence}"
 
     def compose(self) -> ComposeResult:
+        redis = db.sync
         table = DataTable(fixed_columns=1)
         table.cursor_type = "row"
         stream = Stream(redis, self.key)

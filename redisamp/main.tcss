@@ -64,8 +64,15 @@ KeyItem .type {
   padding: 0 1;
 }
 
+KeyItem .ttl {
+  width: auto;
+  padding: 0 1;
+  margin-left: 1;
+}
+
 .type-container {
   width: auto;
+  height: auto;
   padding: 0 1;
   align: center middle;
 }
@@ -74,14 +81,8 @@ KeyItem .type {
   dock: right;
 }
 
-KeyItem .ttl {
-  width: auto;
-  padding: 0 1;
-  margin-left: 1;
-}
-
 #key-view Horizontal {
-  height: 1;
+  # height: 1;
   background: $panel-darken-1;
   dock: bottom;
 }

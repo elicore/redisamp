@@ -1,4 +1,4 @@
-from redisamp.keys import TYPE_NAMES, RedisKey
+from redisamp.db import RedisKey, TYPE_NAMES
 
 from textual.app import ComposeResult
 from textual.containers import Horizontal, Vertical

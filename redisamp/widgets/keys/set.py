@@ -1,4 +1,4 @@
-from redisamp import redis_sync as redis
+from redisamp.db import db
 from redisamp.widgets.keys import BaseKey
 
 
@@ -10,6 +10,7 @@ from textual.widgets import Static
 
 class SetKey(BaseKey):
     def compose(self) -> ComposeResult:
+        redis = db.sync
         s = redis.smembers(self.key)
 
         table = Table(show_header=False, expand=True)
