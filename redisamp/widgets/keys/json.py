@@ -88,7 +88,7 @@ class JsonKey(BaseKey):
 
                 # figure out how to display the value according to its type
                 # json values should be rendered rather than python ones
-                if type(data) == bool:
+                if isinstance(data, bool):
                     if data:
                         rendered_data = Text.from_markup("[blue]true[/blue]")
                     else:

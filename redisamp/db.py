@@ -24,7 +24,7 @@ class RedisDB:
         try:
             self.sync.ping()
             return True
-        except:
+        except Exception:
             return False
 
 db = RedisDB()

@@ -1,9 +1,8 @@
 from textual.screen import ModalScreen
 from redisamp.db import db
-from textual import log
 from textual.containers import Horizontal
 from textual.app import ComposeResult
-from textual.widgets import Label, Placeholder, Button
+from textual.widgets import Label, Placeholder
 
 class SearchScreen(ModalScreen):
     BINDINGS = [("escape", "app.switch_mode('home')", "Back")]
