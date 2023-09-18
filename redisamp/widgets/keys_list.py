@@ -4,7 +4,7 @@ from textual.widgets import DataTable
 from rich.text import Text
 from rich.style import Style
 
-from redisamp.db import TYPE_NAMES, RedisKey, redis_keys
+from redisamp.db import REDIS_TYPES, RedisKey, redis_keys
 
 class KeysList(DataTable):
     keys: list[RedisKey] = list()
@@ -27,9 +27,14 @@ class KeysList(DataTable):
     def update_keys(self, filter: str = "*", count=1000):
         for key in redis_keys(filter, count):
             self.keys.append(key)
-            row = [Text(key.name, style="bold", overflow="ellipsis"), Text(f"{key.ttl}", style="dim")]
-            label_style = Style(bgcolor="magenta")
-            label = Text(TYPE_NAMES.get(key.type, "?"), justify="center", style=label_style)
+            ttl = f"{key.ttl} seconds" if key.ttl > 0 else "∞"
+            row = [Text(key.name, style="bold", overflow="ellipsis"), Text(ttl, style="dim")]
+            key_type = REDIS_TYPES.get(key.type, None)
+            if key_type:
+                label_style = Style(bgcolor=key_type.bgcolor, color="gray37")
+                label = Text(f" {key_type.name} ", justify="center", style=label_style)
+            else:
+                label = Text(key.type, justify="center")
             self.add_row(*row, key=key.name, label=label)
             self.border_title = f"{len(self.keys)} Keys"      
         

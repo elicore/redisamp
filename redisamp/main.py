@@ -2,15 +2,20 @@ import typer
 from textual.app import App
 
 from redisamp.db import db
-from redisamp.screens import HomeScreen, ConnectionScreen, SearchScreen
+from redisamp.screens import HomeScreen, ConnectionScreen, SearchIndexScreen
 
 
 class Redisamp(App):
     CSS_PATH = "main.tcss"
     MODES = {
+        "default": "home",
+        "home": "home",
         "connections": ConnectionScreen(),
+        "search": SearchIndexScreen(),
+    }
+
+    SCREENS = {
         "home": HomeScreen(),
-        "search": SearchScreen(),
     }
 
     BINDINGS = [
@@ -20,7 +25,7 @@ class Redisamp(App):
     ]
 
     def on_mount(self) -> None:
-        self.switch_mode("home")
+        self.switch_mode("default")
 
 
 app = Redisamp()
