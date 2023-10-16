@@ -742,13 +742,13 @@ files = [
 
 [[package]]
 name = "textual"
-version = "0.37.1"
+version = "0.40.0"
 description = "Modern Text User Interface framework"
 optional = false
 python-versions = ">=3.7,<4.0"
 files = [
-    {file = "textual-0.37.1-py3-none-any.whl", hash = "sha256:bbedebd9bf245523dc07d1a883ce4178133cfe1d3c3e030a2224359128f177b7"},
-    {file = "textual-0.37.1.tar.gz", hash = "sha256:0498894da7f4af5cac62d99e412e9d813e784f7a87834dd29aa656d31d068760"},
+    {file = "textual-0.40.0-py3-none-any.whl", hash = "sha256:3e98f0c9c9a9361d3077c00e3fc5a708f927dd1ce45a1149eb1ba6945ce9d71c"},
+    {file = "textual-0.40.0.tar.gz", hash = "sha256:0fd014f9fab7f6d88167c82f90e115b118b3016b8597281d14c9257967f7812e"},
 ]
 
 [package.dependencies]
@@ -756,6 +756,9 @@ importlib-metadata = ">=4.11.3"
 markdown-it-py = {version = ">=2.1.0", extras = ["linkify", "plugins"]}
 rich = ">=13.3.3"
 typing-extensions = ">=4.4.0,<5.0.0"
+
+[package.extras]
+syntax = ["tree-sitter (>=0.20.1,<0.21.0)", "tree_sitter_languages (>=1.7.0)"]
 
 [[package]]
 name = "textual-dev"
@@ -950,4 +953,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "09399535a2fb469b18d53c035429dcd17b0bb377c8b6c334591a3b21af34cc79"
+content-hash = "5963985e280e4203491bec5c9e13b4732e374ec660378dc119fa25a77fe1297e"
